@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ shop.name }}{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo"><h1>{{ shop.name }}</h1><p>{{ shop.brand }}</p></div>
+            <div class="contact">
+                <a href="https://wa.me/{{ shop.whatsapp_url }}" target="_blank">📞 {{ shop.whatsapp }}</a>
+                <a href="mailto:{{ shop.email }}">✉️ {{ shop.email }}</a>
+            </div>
+        </div>
+    </header>
+    <main>{% block content %}{% endblock %}</main>
+    <footer class="site-footer">
+        <div class="container">
+            <p>©️ 2026 {{ shop.name }} — تمام حقوق محفوظ ہیں</p>
+            <p>WhatsApp: {{ shop.whatsapp }}</p>
+        </div>
+    </footer>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
