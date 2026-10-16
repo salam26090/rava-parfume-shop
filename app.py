@@ -179,11 +179,11 @@ def index():
         shop={
             "whatsapp_url": "966551709172",
             "whatsapp": "+966 55 170 9172"
+      
+        
         }
     )
-    "ind  }
-    ) ("order.html", product=product)
-@app.route("/admin/login", methods=["GET", "POST"])
+    "ind  }html", product=p@app.route("/admin/login", methods=["GET", "POST"])
 def admin_login():
     if request.method == "POST":
         admin = read_json(ADMIN_FILE, {
