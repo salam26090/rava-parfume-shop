@@ -179,8 +179,8 @@ def order(product_id):
 def admin_login():
     if request.method == "POST":
         admin = read_json(ADMIN_FILE, {
-            "username": "admin",
-            "password": "ChangeMe123!"
+            "username": "salam",
+            "password": "salam123!"
         })
         username = request.form.get("username", "")
         password = request.form.get("password", "")
