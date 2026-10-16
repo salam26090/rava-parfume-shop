@@ -1,43 +1,351 @@
-{% extends 'base.html' %}
-{% block title %}{{ shop.name }} — Luxury Fragrances{% endblock %}
+     {% extends "base.html" %}
+
+{% block title %}Rava Perfume | Luxury Fragrances{% endblock %}
+
 {% block content %}
-<section class="hero"><div class="container">
-    <h1 class="hero-title">LUXURY FRAGRANCE COLLECTION</h1>
-    <h2 class="hero-subtitle">{{ shop.name }}</h2>
-    <p class="hero-text">{{ shop.brand }} اور منتخب خوشبوؤں کا شاندار مجموعہ</p>
-    <a href="#collection" class="btn-primary">کلیکشن دیکھیں ↓</a>
-</div></section>
-{% if error %}<div class="container"><div class="alert-error">⚠️ {{ error }}</div></div>{% endif %}
-<section id="collection" class="collection-section"><div class="container">
-    <h2 class="section-title">ہمارے پرفیوم</h2>
-    {% for col_key, col in collections.items() %}
-    <div class="collection-block"><h3 class="collection-name">{{ col.name }}</h3>
-        <div class="products-grid">{% for p in col.perfumes %}
-        <div class="product-card">
-            <div class="product-info">
-                <h4 class="product-name">{{ p.name }}</h4>
-                <p class="product-brand">{{ shop.brand }} · {{ col.name }}</p>
-                <p class="product-desc">{{ p.desc }}</p>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b0b0b;
+    color: #fff;
+}
+
+.container {
+    width: 92%;
+    max-width: 1250px;
+    margin: auto;
+}
+
+.hero {
+    padding: 75px 20px;
+    text-align: center;
+    background: radial-gradient(circle, #49351c, #111 70%);
+}
+
+.hero h1 {
+    color: #e7c477;
+    font-size: clamp(30px, 5vw, 58px);
+    margin: 10px 0;
+}
+
+.hero h2 {
+    font-size: 35px;
+    color: #fff;
+    margin: 15px 0;
+}
+
+.hero p {
+    color: #ddd;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.btn-primary {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 28px;
+    background: #d7b56d;
+    color: #111;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.collection-section {
+    padding: 45px 0;
+}
+
+.section-title {
+    text-align: center;
+    color: #e7c477;
+    font-size: 32px;
+    margin-bottom: 35px;
+}
+
+.collection-block {
+    margin-bottom: 50px;
+}
+
+.collection-name {
+    color: #e7c477;
+    border-bottom: 1px solid #735a30;
+    padding-bottom: 12px;
+    font-size: 25px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.product-card {
+    background: #181818;
+    border: 1px solid #4b3b20;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px #0008;
+    transition: transform .3s, border-color .3s;
+}
+
+.product-card:hover {
+    transform: translateY(-7px);
+    border-color: #e7c477;
+}
+
+.product-image {
+    height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #2a2115, #111);
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 10px;
+}
+
+.no-image {
+    color: #d7b56d;
+    text-align: center;
+    padding: 25px;
+    line-height: 1.8;
+}
+
+.product-info {
+    padding: 18px 18px 0;
+}
+
+.product-name {
+    color: #e7c477;
+    font-size: 23px;
+    margin: 5px 0 10px;
+}
+
+.product-brand {
+    color: #bbb;
+    font-size: 13px;
+}
+
+.product-desc {
+    color: #ddd;
+    line-height: 1.8;
+}
+
+.order-form {
+    padding: 18px;
+}
+
+.field-label {
+    display: block;
+    margin: 13px 0 7px;
+    color: #e7c477;
+    font-size: 14px;
+}
+
+.form-input {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #51442d;
+    background: #0e0e0e;
+    color: #fff;
+    font-size: 15px;
+}
+
+.price-display {
+    color: #eee;
+    margin: 15px 0;
+}
+
+.price-value {
+    color: #e7c477;
+    font-size: 21px;
+}
+
+.btn-order {
+    width: 100%;
+    padding: 14px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 8px;
+    background: #d7b56d;
+    color: #111;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-order:hover {
+    background: #f0d596;
+}
+
+.alert-error {
+    margin: 20px auto;
+    padding: 15px;
+    color: #fff;
+    background: #762525;
+    border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+    .hero {
+        padding: 45px 15px;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-image {
+        height: 280px;
+    }
+}
+</style>
+
+<section class="hero">
+    <div class="container">
+        <h1>RAVA PERFUME</h1>
+        <h2>Luxury Fragrance Collection</h2>
+
+        <p>
+            اپنی شخصیت کو دیں ایک منفرد پہچان۔<br>
+            خوبصورت اور دلکش خوشبوؤں کا شاندار مجموعہ۔
+        </p>
+
+        <a href="#collection" class="btn-primary">
+            ہماری کلیکشن دیکھیں ↓
+        </a>
+    </div>
+</section>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="container">
+            {% for message in messages %}
+                <div class="alert-error">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+{% if error %}
+    <div class="container">
+        <div class="alert-error">{{ error }}</div>
+    </div>
+{% endif %}
+
+<section id="collection" class="collection-section">
+    <div class="container">
+
+        <h2 class="section-title">ہمارے پرفیوم</h2>
+
+        <div class="products-grid">
+
+            {% for p in products %}
+
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    {% if p.image %}
+
+                        <img
+                            src="{{ url_for('static', filename=p.image) }}"
+                            alt="{{ p.name }}"
+                            loading="lazy"
+                        >
+
+                    {% else %}
+
+                        <div class="no-image">
+                            <div style="font-size:55px;">🌹</div>
+                            <strong>{{ p.name }}</strong>
+                            <br>
+                            پرفیوم کی تصویر جلد شامل کی جائے گی
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3 class="product-name">
+                        {{ p.name }}
+                    </h3>
+
+                    <p class="product-desc">
+                        {{ p.description }}
+                    </p>
+
+                </div>
+
+                <form
+                    class="order-form"
+                    action="{{ url_for('order', product_id=p.id) }}"
+                    method="POST"
+                >
+
+                    <label class="field-label">
+                        پرفیوم کا سائز منتخب کریں
+                    </label>
+
+                    <select
+                        name="size"
+                        class="form-input size-select"
+                        required
+                    >
+
+                        {% for size, price in p.prices.items() %}
+
+                        <option value="{{ size }}">
+                            {{ size }} ml — PKR {{ "{:,}".format(price|int) }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                    <label class="field-label">
+                        تعداد
+                    </label>
+
+                    <input
+                        type="number"
+                        name="quantity"
+                        class="form-input"
+                        value="1"
+                        min="1"
+                        max="20"
+                        required
+                    >
+
+                    <button type="submit" class="btn-order">
+                        ابھی آرڈر کریں
+                    </button>
+
+                </form>
+
             </div>
-            <form class="order-form" action="/checkout" method="POST" onsubmit="return prepareOrder(this);">
-                <input type="hidden" name="perfume_name" value="{{ p.name }}">
-                <label class="field-label">سائز</label>
-                <select name="size" class="form-input size-select" onchange="updatePrice(this);" required>
-                    {% for size, price in p.prices.items() %}
-                    <option value="{{ size }}" data-price="{{ price }}">{{ size }} — PKR {{ "{:,}".format(price) }}</option>
-                    {% endfor %}
-                </select>
-                <p class="price-display">قیمت: <strong>PKR <span class="price-value">{{ "{:,}".format(p.prices['10ml']) }}</span></strong></p>
-                <input type="hidden" name="price" class="price-input" value="{{ p.prices['10ml'] }}">
-                <label class="field-label">آپ کا نام</label>
-                <input type="text" name="customer_name" class="form-input" placeholder="مکمل نام" required>
-                <label class="field-label">موبائل نمبر</label>
-                <input type="tel" name="phone" class="form-input" placeholder="03xxxxxxxxx" required>
-                <label class="field-label">مکمل پتہ</label>
-                <textarea name="address" class="form-input" rows="3" placeholder="گھر نمبر، گلی، علاقہ، شہر" required></textarea>
-                <button type="submit" class="btn-order">واٹس ایپ پر آرڈر تیار کریں</button>
-            </form>
-        </div>{% endfor %}</div>
-    </div>{% endfor %}
-</div></section>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+
 {% endblock %}
