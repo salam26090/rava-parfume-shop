@@ -179,10 +179,7 @@ def index():
         settings=settings,
         shop={
             "whatsapp_url": "966551709172",
-            "whatsapp": "+966 55 170 9172"
-        }
-    )
-    
+                "whatsapp": "+966 55 170 9172"          
     @app.route("/")
 def index():
     return render_template(
