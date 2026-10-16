@@ -1,1 +1,30 @@
+{% extends 'base.html' %}{% block content %}
+LUXURY FRAGRANCE COLLECTION
 
+SWAT PERFUMES
+RAVA PARFUME اور منتخب خوشبوؤں کا شاندار مجموعہ
+
+کلیکشن دیکھیں ↓
+ہمارے پرفیوم
+تمامRAVAZAMEL
+{% for p in products %}
+{{p.name}}
+{{p.brand}} · {{p.collection}}
+{{p.name}}
+{{p.description}}
+
+100ml قیمت: PKR {{'{:,}'.format(prices[p.id][100])}}
+
+سائز
+{{size}}ml — PKR {{'{:,}'.format(amount)}}
+تعداد
+1
+آپ کا نام
+موبائل نمبر
+ڈیلیوری علاقہ
+{{region}}
+مکمل پتہ
+
+واٹس ایپ پر آرڈر تیار کریں
+{% endfor %}
+{% endblock %}
