@@ -170,7 +170,12 @@ def order(product_id):
         orders.insert(0, order_record)
         write_json(ORDERS_FILE, orders)
         return render_template(
-            "success.html",
+    "index.html",
+    shop={
+        "whatsapp_url": "966551709172",
+        "whatsapp": "+966 55 170 9172"
+    }
+)
             order=order_record,
             settings=settings
         )
