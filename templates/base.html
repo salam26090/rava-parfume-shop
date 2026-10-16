@@ -1,16 +1,29 @@
-{% extends 'base.html' %}
-{% block title %}آرڈر کی تصدیق — {{ shop.name }}{% endblock %}
-{% block content %}
-<section class="success-section"><div class="container"><div class="success-card">
-    <div class="success-icon">✅</div>
-    <h1>آپ کا آرڈر تیار ہے!</h1>
-    <p class="success-text">شکریہ <strong>{{ customer_name }}</strong>! براہ کرم نیچے والے بٹن پر کلک کر کے واٹس ایپ پر آرڈر مکمل کریں۔</p>
-    <div class="order-summary"><h3>آرڈر کی تفصیل:</h3><ul>
-        <li><strong>پرفیوم:</strong> {{ perfume_name }}</li>
-        <li><strong>سائز:</strong> {{ size }}</li>
-        <li><strong>قیمت:</strong> PKR {{ price }}</li>
-    </ul></div>
-    <a href="{{ whatsapp_url }}" target="_blank" class="btn-whatsapp">📲 واٹس ایپ پر آرڈر بھیجیں</a>
-    <a href="/" class="btn-secondary">← مزید خریداری کریں</a>
-</div></div></section>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ shop.name }}{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo"><h1>{{ shop.name }}</h1><p>{{ shop.brand }}</p></div>
+            <div class="contact">
+                <a href="https://wa.me/{{ shop.whatsapp_url }}" target="_blank">📞 {{ shop.whatsapp }}</a>
+                <a href="mailto:{{ shop.email }}">✉️ {{ shop.email }}</a>
+            </div>
+        </div>
+    </header>
+    <main>{% block content %}{% endblock %}</main>
+    <footer class="site-footer">
+        <div class="container">
+            <p>©️ 2026 {{ shop.name }} — تمام حقوق محفوظ ہیں</p>
+            <p>WhatsApp: {{ shop.whatsapp }}</p>
+        </div>
+    </footer>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

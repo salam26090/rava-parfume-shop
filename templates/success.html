@@ -1,30 +1,16 @@
-{% extends 'base.html' %}{% block content %}
-LUXURY FRAGRANCE COLLECTION
-
-SWAT PERFUMES
-RAVA PARFUME اور منتخب خوشبوؤں کا شاندار مجموعہ
-
-کلیکشن دیکھیں ↓
-ہمارے پرفیوم
-تمامRAVAZAMEL
-{% for p in products %}
-{{p.name}}
-{{p.brand}} · {{p.collection}}
-{{p.name}}
-{{p.description}}
-
-100ml قیمت: PKR {{'{:,}'.format(prices[p.id][100])}}
-
-سائز
-{{size}}ml — PKR {{'{:,}'.format(amount)}}
-تعداد
-1
-آپ کا نام
-موبائل نمبر
-ڈیلیوری علاقہ
-{{region}}
-مکمل پتہ
-
-واٹس ایپ پر آرڈر تیار کریں
-{% endfor %}
+{% extends 'base.html' %}
+{% block title %}آرڈر کی تصدیق — {{ shop.name }}{% endblock %}
+{% block content %}
+<section class="success-section"><div class="container"><div class="success-card">
+    <div class="success-icon">✅</div>
+    <h1>آپ کا آرڈر تیار ہے!</h1>
+    <p class="success-text">شکریہ <strong>{{ customer_name }}</strong>! براہ کرم نیچے والے بٹن پر کلک کر کے واٹس ایپ پر آرڈر مکمل کریں۔</p>
+    <div class="order-summary"><h3>آرڈر کی تفصیل:</h3><ul>
+        <li><strong>پرفیوم:</strong> {{ perfume_name }}</li>
+        <li><strong>سائز:</strong> {{ size }}</li>
+        <li><strong>قیمت:</strong> PKR {{ price }}</li>
+    </ul></div>
+    <a href="{{ whatsapp_url }}" target="_blank" class="btn-whatsapp">📲 واٹس ایپ پر آرڈر بھیجیں</a>
+    <a href="/" class="btn-secondary">← مزید خریداری کریں</a>
+</div></div></section>
 {% endblock %}
