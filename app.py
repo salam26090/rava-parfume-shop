@@ -169,12 +169,16 @@ def order(product_id):
         orders = read_json(ORDERS_FILE, [])
         orders.insert(0, order_record)
         write_json(ORDERS_FILE, orders)
-        return render_template(
-    "index.html",
-    shop={
-        "whatsapp_url": "966551709172",
-        "whatsapp": "+966 55 170 9172"
-    }
+    
+    @app.route("/")
+def index():
+    return render_template(
+        "index.html",
+        shop={
+            "whatsapp_url": "966551709172",
+            "whatsapp": "+966 55 170 9172"
+        }
+    )   }
 ) return render_template("order.html", product=product)
 @app.route("/admin/login", methods=["GET", "POST"])
 def admin_login():
