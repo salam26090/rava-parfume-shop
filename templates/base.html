@@ -2,58 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Rava Perfume Shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Rava Perfume Shop{% endblock %}</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
-        h1 { text-align: center; color: #333; }
-        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
+        header { background-color: #333; color: white; padding: 20px; text-align: center; }
+        footer { background-color: #333; color: white; padding: 10px; text-align: center; margin-top: 30px; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; max-width: 1200px; margin: 20px auto; padding: 0 20px; }
         .perfume-card { background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; text-align: center; }
         .perfume-card img { width: 100%; height: 250px; object-fit: cover; }
         .perfume-card p { padding: 10px; font-weight: bold; color: #555; margin: 0; }
     </style>
 </head>
 <body>
-    <h1>🌹 Rava Perfume Shop 🌹</h1>
-    
-    {% if images %}
-        <div class="gallery">
-            {% for image in images %}
-                <div class="perfume-card">
-                    <img src="{{ url_for('static', filename='images/' + image) }}" alt="Perfume">
-                    <p>{{ image.split('.')[0] }}</p>
-                </div><p>{{ image.split('.')[0].replace('-', ' ').replace('_', ' ').title() }}</p>
-            {% endfor %}
-        </div>
-    {% else %}
-        <p style="color:red; text-align:center;">⚠️ کوئی تصویر نہیں ملی۔</p>
-    {% endif %}
+    <header>
+        <h1>🌹 Rava Perfume Shop 🌹</h1>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2026 Rava Perfume Shop. All rights reserved.</p>
+    </footer>
 </body>
 </html>
-{% extends 'base.html' %}
-{% block title %}آرڈر کی تصدیق — {{ shop.name }}{% endblock %}
-
-{% block content %}
-<section class="success-section">
-    <div class="container">
-        <div class="success-card">
-            <div class="success-icon">✅</div>
-            <h1>آپ کا آرڈر تیار ہے!</h1>
-            <p class="success-text">
-                شکریہ <strong>{{ customer_name }}</strong>! براہ کرم نیچے والے بٹن پر کلک کر کے واٹس ایپ پر آرڈر مکمل کریں۔
-            </p>
-
-            <div class="order-summary">
-                <h3>آرڈر کی تفصیل:</h3>
-                <ul>
-                    <li><strong>پرفیوم:</strong> {{ perfume_name }}</li>
-                    <li><strong>سائز:</strong> {{ size }}</li>
-                    <li><strong>قیمت:</strong> PKR {{ price }}</li>
-                </ul>
-            </div>
-
-            <a href="{{ whatsapp_url }}" target="_blank" class="btn-whatsapp">📲 واٹس ایپ پر آرڈر بھیجیں</a>
-            <a href="/" class="btn-secondary">← مزید خریداری کریں</a>
-        </div>
-    </div>
-</section>
-{% endblock %}
