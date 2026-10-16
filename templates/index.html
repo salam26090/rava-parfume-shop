@@ -1,4 +1,4 @@
- {% extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}Rava Perfume Shop - Luxury Fragrances{% endblock %}
 
@@ -7,12 +7,41 @@
         <div class="gallery">
             {% for image in images %}
                 <div class="perfume-card">
-                    <img src="{{ url_for('static', filename='images/' + image) }}" alt="Perfume">
-                    <p>{{ image.split('.')[0].replace('-', ' ').replace('_', ' ').title() }}</p>
+                    <!-- تصویر (کلک کرنے پر بڑی ہوگی) -->
+                    <div class="img-container" onclick="openLightbox('{{ url_for('static', filename='images/' + image) }}')">
+                        <img src="{{ url_for('static', filename='images/' + image) }}" alt="Perfume">
+                    </div>
+                    
+                    <div class="card-details">
+                        <!-- نام خود بخود خوبصورت بن رہا ہے -->
+                        <h3>{{ image.split('.')[0].replace('-', ' ').replace('_', ' ').title() }}</h3>
+                        
+                        <!-- قیمت (آپ اپنی مرضی سے لکھ سکتے ہیں) -->
+                        <div class="price">Rs. 2,500</div>
+                        
+                        <!-- واٹس ایپ بٹن -->
+                        <!-- نیچے اپنا واٹس ایپ نمبر ڈالیں (923001234567 کی جگہ) -->
+                        <a href="https://wa.me/923454828100?text=مجھے%20یہ%20پرفیوم%20چاہیے:%20{{ image.split('.')[0].replace('-', ' ').title() }}" 
+                           target="_blank" 
+                           class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Order on WhatsApp
+                        </a>
+                    </div>
                 </div>
             {% endfor %}
         </div>
     {% else %}
-        <p style="color:red; text-align:center; font-size: 18px; margin-top: 50px;">⚠️ کوئی تصویر نہیں ملی۔</p>
+        <p style="text-align:center; color:red; font-size:18px; margin-top:50px;">⚠️ کوئی تصویر نہیں ملی۔ براہ کرم static/images فولڈر میں تصاویر اپلوڈ کریں۔</p>
     {% endif %}
+
+    <!-- جاوا اسکرپٹ (تصویر بڑی کرنے کے لیے) -->
+    <script>
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+    </script>
 {% endblock %}
