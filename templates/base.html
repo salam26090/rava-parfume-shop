@@ -1,29 +1,31 @@
 <!DOCTYPE html>
-<html lang="ur" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{{ shop.name }}{% endblock %}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Rava Perfume Shop</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+        h1 { text-align: center; color: #333; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .perfume-card { background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; text-align: center; }
+        .perfume-card img { width: 100%; height: 250px; object-fit: cover; }
+        .perfume-card p { padding: 10px; font-weight: bold; color: #555; margin: 0; }
+    </style>
 </head>
 <body>
-    <header class="site-header">
-        <div class="container">
-            <div class="logo"><h1>{{ shop.name }}</h1><p>{{ shop.brand }}</p></div>
-            <div class="contact">
-                <a href="https://wa.me/{{ shop.whatsapp_url }}" target="_blank">📞 {{ shop.whatsapp }}</a>
-                <a href="mailto:{{ shop.email }}">✉️ {{ shop.email }}</a>
-            </div>
+    <h1>🌹 Rava Perfume Shop 🌹</h1>
+    
+    {% if images %}
+        <div class="gallery">
+            {% for image in images %}
+                <div class="perfume-card">
+                    <img src="{{ url_for('static', filename='images/' + image) }}" alt="Perfume">
+                    <p>{{ image.split('.')[0] }}</p>
+                </div>
+            {% endfor %}
         </div>
-    </header>
-    <main>{% block content %}{% endblock %}</main>
-    <footer class="site-footer">
-        <div class="container">
-            <p>©️ 2026 {{ shop.name }} — تمام حقوق محفوظ ہیں</p>
-            <p>WhatsApp: {{ shop.whatsapp }}</p>
-        </div>
-    </footer>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% else %}
+        <p style="color:red; text-align:center;">⚠️ کوئی تصویر نہیں ملی۔</p>
+    {% endif %}
 </body>
 </html>
