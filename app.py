@@ -182,7 +182,7 @@ def index():
         }
     )
     "ind  }
-    ) return render_template("order.html", product=product)
+    ) ("order.html", product=product)
 @app.route("/admin/login", methods=["GET", "POST"])
 def admin_login():
     if request.method == "POST":
