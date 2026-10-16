@@ -1,1 +1,52 @@
-
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Poppins', 'Noto Nastaliq Urdu', sans-serif; background: #faf8f5; color: #2c2c2c; line-height: 1.7; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.site-header { background: linear-gradient(135deg, #1a1a1a 0%, #2d1810 100%); color: #d4af37; padding: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+.site-header .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+.logo h1 { font-size: 1.8rem; font-weight: 700; letter-spacing: 2px; color: #d4af37; }
+.logo p { font-size: 0.9rem; color: #c9a961; letter-spacing: 3px; }
+.contact a { color: #d4af37; text-decoration: none; margin-inline-start: 15px; font-size: 0.95rem; }
+.contact a:hover { color: #fff; }
+.hero { background: linear-gradient(135deg, #2d1810 0%, #1a1a1a 100%); color: #fff; text-align: center; padding: 80px 20px; }
+.hero-title { font-size: 2.5rem; letter-spacing: 4px; color: #d4af37; margin-bottom: 15px; }
+.hero-subtitle { font-size: 2rem; margin-bottom: 10px; }
+.hero-text { font-size: 1.1rem; color: #ddd; margin-bottom: 30px; font-family: 'Noto Nastaliq Urdu', serif; }
+.btn-primary { display: inline-block; background: #d4af37; color: #1a1a1a; padding: 14px 35px; border-radius: 50px; text-decoration: none; font-weight: 600; letter-spacing: 1px; transition: all 0.3s; }
+.btn-primary:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(212,175,55,0.4); }
+.collection-section { padding: 60px 0; }
+.section-title { text-align: center; font-size: 2rem; color: #2d1810; margin-bottom: 40px; font-family: 'Noto Nastaliq Urdu', serif; position: relative; }
+.section-title::after { content: ''; display: block; width: 80px; height: 3px; background: #d4af37; margin: 15px auto 0; }
+.collection-block { margin-bottom: 50px; }
+.collection-name { font-size: 1.5rem; color: #2d1810; margin-bottom: 25px; text-align: center; }
+.products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+.product-card { background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 25px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; border: 1px solid #f0e6d2; }
+.product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(212,175,55,0.2); }
+.product-info { padding: 25px 25px 15px; background: linear-gradient(135deg, #2d1810 0%, #1a1a1a 100%); color: #fff; text-align: center; }
+.product-name { font-size: 1.3rem; color: #d4af37; margin-bottom: 8px; }
+.product-brand { font-size: 0.85rem; color: #c9a961; letter-spacing: 1px; margin-bottom: 12px; }
+.product-desc { font-size: 0.95rem; color: #ddd; font-family: 'Noto Nastaliq Urdu', serif; }
+.order-form { padding: 25px; }
+.field-label { display: block; font-size: 0.9rem; color: #2d1810; font-weight: 600; margin: 12px 0 6px; font-family: 'Noto Nastaliq Urdu', serif; }
+.form-input { width: 100%; padding: 12px 15px; border: 2px solid #f0e6d2; border-radius: 10px; font-size: 1rem; font-family: inherit; background: #faf8f5; transition: border-color 0.3s; }
+.form-input:focus { outline: none; border-color: #d4af37; background: #fff; }
+.price-display { margin: 15px 0; font-size: 1.1rem; color: #2d1810; text-align: center; font-family: 'Noto Nastaliq Urdu', serif; }
+.price-display strong { color: #d4af37; font-size: 1.3rem; }
+.btn-order { width: 100%; background: #25D366; color: #fff; padding: 15px; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 20px; font-family: 'Noto Nastaliq Urdu', serif; transition: all 0.3s; }
+.btn-order:hover { background: #1da851; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37,211,102,0.3); }
+.alert-error { background: #fee; color: #c00; padding: 15px 20px; border-radius: 10px; margin: 20px 0; border-right: 4px solid #c00; font-family: 'Noto Nastaliq Urdu', serif; }
+.success-section { padding: 60px 0; min-height: 70vh; display: flex; align-items: center; }
+.success-card { background: #fff; max-width: 600px; margin: 0 auto; padding: 50px 40px; border-radius: 20px; text-align: center; box-shadow: 0 15px 50px rgba(0,0,0,0.1); border-top: 5px solid #d4af37; }
+.success-icon { font-size: 4rem; margin-bottom: 20px; }
+.success-card h1 { color: #2d1810; margin-bottom: 15px; font-family: 'Noto Nastaliq Urdu', serif; }
+.success-text { color: #666; margin-bottom: 25px; font-family: 'Noto Nastaliq Urdu', serif; }
+.order-summary { background: #faf8f5; padding: 20px; border-radius: 12px; text-align: right; margin: 25px 0; border: 1px dashed #d4af37; }
+.order-summary h3 { color: #2d1810; margin-bottom: 12px; font-size: 1.1rem; }
+.order-summary ul { list-style: none; }
+.order-summary li { padding: 6px 0; color: #444; }
+.btn-whatsapp { display: inline-block; background: #25D366; color: #fff; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: 600; margin: 10px 5px; transition: all 0.3s; }
+.btn-whatsapp:hover { background: #1da851; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37,211,102,0.3); }
+.btn-secondary { display: inline-block; color: #2d1810; padding: 15px 30px; text-decoration: none; margin: 10px 5px; font-family: 'Noto Nastaliq Urdu', serif; }
+.btn-secondary:hover { color: #d4af37; }
+.site-footer { background: #1a1a1a; color: #888; text-align: center; padding: 25px 0; margin-top: 50px; }
+.site-footer p { margin: 5px 0; font-size: 0.9rem; }
+@media (max-width: 600px) { .hero-title { font-size: 1.6rem; letter-spacing: 2px; } .hero-subtitle { font-size: 1.4rem; } .site-header .container { flex-direction: column; text-align: center; } .contact a { display: block; margin: 5px 0; } .success-card { padding: 35px 20px; } }
