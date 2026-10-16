@@ -172,14 +172,17 @@ def order(product_id):
     
     @app.route("/")
 def index():
+    @app.route("/")
+def index():
     return render_template(
         "index.html",
         shop={
             "whatsapp_url": "966551709172",
             "whatsapp": "+966 55 170 9172"
         }
-    )   }
-) return render_template("order.html", product=product)
+    )
+    "ind  }
+    ) return render_template("order.html", product=product)
 @app.route("/admin/login", methods=["GET", "POST"])
 def admin_login():
     if request.method == "POST":
