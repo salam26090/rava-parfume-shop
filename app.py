@@ -169,9 +169,20 @@ def order(product_id):
         orders = read_json(ORDERS_FILE, [])
         orders.insert(0, order_record)
         write_json(ORDERS_FILE, orders)
-    
     @app.route("/")
 def index():
+    products = read_json(PRODUCTS_FILE, [])
+    settings = read_json(SETTINGS_FILE, {})
+    return render_template(
+        "index.html",
+        products=products,
+        settings=settings,
+        shop={
+            "whatsapp_url": "966551709172",
+            "whatsapp": "+966 55 170 9172"
+        }
+    )
+    
     @app.route("/")
 def index():
     return render_template(
