@@ -1,194 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{10% block title %}Rava Perfume Shop{10% endblock %}</title>
-    <!-- فونٹ آئیکنز کے لیے لنک (واٹس ایپ آئیکن کے لیے) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/10.0.0/css/all.min.css">
-    <style>
-        /* ---- بنیادی سیٹنگ ---- */
-        * { box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: #gold=black=max,
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            overflow-y: auto;
-        }
-        
-        /* ---- ہیڈر ---- */
-        header {
-            background-color: #gold,==
-            color: #d4af37;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-            letter-spacing: 3px;
-            font-weight: 300;
-        }
-        header p {
-            margin: 5px 0 0 0;
-            font-size: 14px;
-            color: #gold,
-            letter-spacing: 3px;
-        }
-
-        /* ---- تصویروں کا گرڈ ---- */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px 80px 20px;
-        }
-
-        /* ---- کارڈ ڈیزائن ---- */
-        .perfume-card {
-            background: #gold;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            overflow: hidden;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-        .perfume-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-        }
-
-        /* ---- تصویر ---- */
-        .img-container {
-            width: 100%;
-            height: 250px;
-            overflow: hidden;
-            cursor: pointer;
-            background: #f0f0f0;
-        }
-        .img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        .img-container:hover img {
-            transform: scale(1.5); /* ہوور پر زوم */
-        }
-
-        /* ---- نام اور قیمت ---- */
-        .card-details {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .card-details h3 {
-            margin: 0 0 20px 0;
-            font-size: 18px;
-            color: #333;
-            font-weight: 600;
-            text-transform: capitalize;
-        }
-        .card-details .price {
-            color: #d4af37;
-            font-weight: bold;
-            font-size: 16px;
-            margin-bottom: 15px;
-        }
-
-        /* ---- واٹس ایپ بٹن ---- */
-        .whatsapp-btn {
-            display: inline-block;
-            background-color: #25D366;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: bold;
-            transition: background 0.3s;
-            width: 100%;
-            border: none;
-            cursor: pointer;
-        }
-        .whatsapp-btn:hover {
-            background-color: #1ebe5d;
-        }
-        .whatsapp-btn i {
-            margin-right: 8px;
-        }
-
-        /* ---- لائٹ باکس (تصویر بڑی کرنے کے لیے) ---- */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-        .lightbox img {
-            max-width: 90%;
-            max-height: 80%;
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(255,255,255,0.3);
-        }
-        .lightbox .close-btn {
-            position: absolute;
-            top: 20px; right: 40px;
-            color: white;
-            font-size: 40px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        /* ---- فوٹر ---- */
-        footer {
-            background-color: #1a1a1a;
-            color: #888;
-            padding: 20px;
-            text-align: center;
-            font-size: 14px;
-        }
-        footer a { color: #d4af37; text-decoration: none; }
-    </style>
+    <title>{% block title %}{{ shop.name }}{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <header>
-        <h1>🌹 RAVA PERFUME 🌹</h1>
-        <p>Luxury Fragrances Collection</p>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo"><h1>{{ shop.name }}</h1><p>{{ shop.brand }}</p></div>
+            <div class="contact">
+                <a href="https://wa.me/{{ shop.whatsapp_url }}" target="_blank">📞 {{ shop.whatsapp }}</a>
+                <a href="mailto:{{ shop.email }}">✉️ {{ salam26090@gmail.com }}</a>
+            </div>
+        </div>
     </header>
-
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
-
-    <footer>
-        <p>© 2026 Rava Perfume Shop | Designed with ❤️</p>
-        <p>For orders: <a href="https://wa.me/923000000000" target="_blank">Chat on WhatsApp</a></p>
+    <main>{% block content %}{% endblock %}</main>
+    <footer class="site-footer">
+        <div class="container">
+            <p>©️ 2026 {{ shop.name }} — تمام حقوق محفوظ ہیں</p>
+            <p>WhatsApp: {{ 923454828100 }}</p>
+        </div>
     </footer>
-
-    <!-- لائٹ باکس کا ڈھانچہ -->
-    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-        <span class="close-btn">&times;</span>
-        <img id="lightbox-img" src="" alt="Zoomed Perfume">
-    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
