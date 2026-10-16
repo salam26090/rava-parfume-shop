@@ -175,11 +175,7 @@ def order(product_id):
         "whatsapp_url": "966551709172",
         "whatsapp": "+966 55 170 9172"
     }
-)
-            order=order_record,
-            settings=settings
-        )
-    return render_template("order.html", product=product)
+) return render_template("order.html", product=product)
 @app.route("/admin/login", methods=["GET", "POST"])
 def admin_login():
     if request.method == "POST":
